@@ -10,7 +10,7 @@ var StravaStrategy   = require('passport-strava').Strategy;
 var User     = require('../app/models/user');
 
 // load the auth variables
-var configAuth = require('./auth'); // use this one for testing
+var configAuth = require('./auth/facebook');
 
 module.exports = function(passport) {
 
