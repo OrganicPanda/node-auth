@@ -26,6 +26,12 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
+    },
+    strava           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        displayName  : String
     }
 
 });

@@ -29,7 +29,7 @@
 						<strong>email</strong>: <%= user.local.email %><br>
 						<strong>password</strong>: <%= user.local.password %>
 					</p>
-					
+
 					<a href="/unlink/local" class="btn btn-default">Unlink</a>
 				<% } else { %>
 					<a href="/connect/local" class="btn btn-default">Connect Local</a>
@@ -99,6 +99,29 @@
 					<a href="/unlink/google" class="btn btn-danger">Unlink</a>
 				<% } else { %>
 					<a href="/connect/google" class="btn btn-danger">Connect Google</a>
+				<% } %>
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
+
+		<!-- Strava INFORMATION -->
+		<div class="col-sm-6">
+			<div class="well">
+				<h3 class="text-info"><span class="fa fa-user"></span> Strava</h3>
+
+				<% if (user.strava.token) { %>
+					<p>
+						<strong>id</strong>: <%= user.strava.id %><br>
+						<strong>token</strong>: <%= user.strava.token %><br>
+						<strong>email</strong>: <%= user.strava.email %><br>
+						<strong>display name</strong>: <%= user.strava.displayName %>
+					</p>
+
+					<a href="/unlink/strava" class="btn btn-info">Unlink</a>
+				<% } else { %>
+					<a href="/connect/strava" class="btn btn-info">Connect Strava</a>
 				<% } %>
 
 			</div>

@@ -88,6 +88,18 @@ module.exports = function(app, passport) {
 				failureRedirect : '/'
 			}));
 
+	// strava ---------------------------------
+
+		// send to strava to do the authentication
+		app.get('/auth/strava', passport.authenticate('strava'));
+
+		// the callback after strava has authenticated the user
+		app.get('/auth/strava/callback',
+			passport.authenticate('strava', {
+				successRedirect : '/profile',
+				failureRedirect : '/'
+			}));
+
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // =============================================================================
@@ -139,6 +151,18 @@ module.exports = function(app, passport) {
 				failureRedirect : '/'
 			}));
 
+	// strava ---------------------------------
+
+		// send to strava to do the authentication
+		app.get('/connect/strava', passport.authorize('strava'));
+
+		// the callback after strava has authorized the user
+		app.get('/connect/strava/callback',
+			passport.authorize('strava', {
+				successRedirect : '/profile',
+				failureRedirect : '/'
+			}));
+
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
 // =============================================================================
@@ -178,6 +202,15 @@ module.exports = function(app, passport) {
 	app.get('/unlink/google', function(req, res) {
 		var user          = req.user;
 		user.google.token = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
+
+	// strava ---------------------------------
+	app.get('/unlink/strava', function(req, res) {
+		var user          = req.user;
+		user.strava.token = undefined;
 		user.save(function(err) {
 			res.redirect('/profile');
 		});
