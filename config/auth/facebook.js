@@ -1,12 +1,15 @@
-var keys = require('keys').facebook
+var keys = require('./keys').facebook
   , Strategy = require('passport-facebook').Strategy
   , User = require('../../app/models/user');
 
 var updateAndReturn = function(user, token, profile, done) {
+  var name = profile.name.givenName
+    , surname = profile.name.familyName;
+
 	user.facebook.id = profile.id;
   user.facebook.token = token;
-  user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-  user.facebook.email = (profile.emails[0].value || '').toLowerCase();
+  user.facebook.name = name + ' ' + surname;
+  user.facebook.email = profile.emails[0].value;
 
   user.save(function(err) {
     if (err) return done(err);
@@ -25,8 +28,10 @@ module.exports = function(passport) {
     process.nextTick(function() {
       if (!req.user) {
         User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
-          if (err) return done(err);
-          if (user && !!user.facebook.token) return done(null, user);
+          if (err)
+            return done(err);
+          if (user && !!user.facebook.token)
+            return done(null, user);
 
           // No user, create them
           updateAndReturn(new User(), token, profile, done);
