@@ -1,17 +1,15 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 8080;
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash = require('connect-flash');
-
-var morgan = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-
-var configDB = require('./config/database');
-var secret = require('./config/keys').secret;
+var express = require('express')
+  , app = express()
+  , port = process.env.PORT || 8080
+  , mongoose = require('mongoose')
+  , passport = require('passport')
+  , flash = require('connect-flash')
+  , morgan = require('morgan')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
+  , session = require('express-session')
+  , configDB = require('./config/database')
+  , secret = require('./config/keys').secret
 
 mongoose.connect(configDB.url);
 
