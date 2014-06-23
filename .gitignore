@@ -17,4 +17,7 @@ npm-debug.log
 node_modules
 
 config/database.js
-config/auth/keys.js
+config/keys.js
+
+*.sublime-project
+*.sublime-workspace
