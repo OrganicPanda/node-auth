@@ -35,6 +35,6 @@ Forked from [scotch-io](https://github.com/scotch-io/easy-node-authentication/) 
 ## TODO
 
 - [ ] Merge accounts more intelligently
-- [X] ~Salt the local user's password~ (It was already doing this, I wasn't aware bcrypt stores it as part of the hash)
+- [X] ~~Salt the local user's password~~ (It was already doing this, I wasn't aware bcrypt stores it as part of the hash)
 - [X] Async password hashing
 - [ ] Make adding and removing providers easier
